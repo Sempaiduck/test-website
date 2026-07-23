@@ -1,1 +1,379 @@
-<h1>Hello, this is my test site!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waypoint Coffee — Corner of 5th &amp; Alder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1712;
+    --ink-soft:#3a322a;
+    --cream:#f4ecd8;
+    --amber:#c08a3e;
+    --amber-deep:#9c6a26;
+    --ring:#b5522f;
+    --sage:#6f7d5c;
+    --line: rgba(244,236,216,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    line-height:1.05;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(28,23,18,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+    letter-spacing:0.01em;
+  }
+  .brand-mark{
+    width:30px; height:30px; border-radius:50%;
+    border:1.5px solid var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.7rem; color:var(--amber);
+  }
+  nav ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+    font-size:0.92rem; color:var(--cream); opacity:0.85;
+  }
+  nav ul a{text-decoration:none;}
+  nav ul a:hover{color:var(--amber);}
+  .nav-cta{
+    border:1px solid var(--amber); color:var(--amber);
+    padding:8px 16px; border-radius:100px; font-size:0.85rem;
+    text-decoration:none; white-space:nowrap;
+  }
+  .nav-links-wrap{display:flex; align-items:center; gap:28px;}
+
+  /* HERO — chalkboard menu board */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(192,138,62,0.10), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(181,82,47,0.10), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--sage); margin-bottom:20px;
+  }
+  .eyebrow-dot{width:6px; height:6px; border-radius:50%; background:var(--sage); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.2rem);
+    color:var(--cream);
+    font-weight:600;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--amber); font-weight:400;
+  }
+  .hero p.lede{
+    font-size:1.08rem; color:var(--cream); opacity:0.72;
+    max-width:44ch; margin:22px 0 32px; line-height:1.6;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--amber); color:var(--ink);
+    border:none; padding:14px 26px; border-radius:100px;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.95rem;
+    text-decoration:none; display:inline-block; cursor:pointer;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover{background:#d4995a; transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--cream);
+    padding:14px 26px; border-radius:100px; font-size:0.95rem;
+    text-decoration:none; display:inline-block;
+    transition:border-color 0.15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--amber);}
+
+  /* SIGNATURE: the stamped coffee-ring badge (also used as section marker) */
+  .ring-badge{
+    position:relative;
+    width:200px; height:200px;
+    margin-left:auto;
+    border-radius:50%;
+    border:2px solid var(--ring);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    transform:rotate(-6deg);
+    transition:transform 0.4s ease;
+  }
+  .ring-badge::before{
+    content:"";
+    position:absolute; inset:12px;
+    border-radius:50%;
+    border:1px dashed rgba(181,82,47,0.5);
+  }
+  .ring-badge:hover{transform:rotate(0deg) scale(1.03);}
+  .ring-badge .stamp-top{font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ring);}
+  .ring-badge .stamp-main{font-family:'Fraunces', serif; font-size:1.5rem; color:var(--cream); margin:4px 0;}
+  .ring-badge .stamp-bottom{font-size:0.68rem; letter-spacing:0.1em; color:var(--cream); opacity:0.65;}
+
+  /* SECTION LABEL — reuses the ring-mark, small, as a category tag */
+  .section-label{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .section-label .ring-mini{
+    width:22px; height:22px; border-radius:50%;
+    border:1.5px solid var(--ring);
+  }
+  .section-label span{
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ring);
+  }
+
+  section{padding:76px 0;}
+  .divider{height:1px; background:var(--line); border:none; margin:0;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
+  .about-grid h2{font-size:clamp(1.8rem,3vw,2.5rem); font-weight:600; margin-bottom:20px;}
+  .about-grid p{color:var(--cream); opacity:0.75; line-height:1.7; font-size:1rem; max-width:56ch;}
+  .about-stats{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
+  .about-stats div{border-left:2px solid var(--amber); padding-left:14px;}
+  .about-stats .num{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--amber);}
+  .about-stats .lbl{font-size:0.8rem; opacity:0.6; margin-top:2px;}
+
+  /* MENU — chalkboard */
+  .menu-board{
+    background:#151109;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:44px 40px;
+  }
+  .menu-cols{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .menu-col h3{
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--amber);
+    text-transform:uppercase; letter-spacing:0.08em; font-weight:600;
+    margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid var(--line);
+  }
+  .menu-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:11px 0; border-bottom:1px dashed rgba(244,236,216,0.1);
+    gap:16px;
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .name{font-size:0.98rem;}
+  .menu-item .note{display:block; font-size:0.8rem; opacity:0.55; margin-top:2px;}
+  .menu-item .price{font-family:'Fraunces', serif; color:var(--amber); font-size:0.98rem; white-space:nowrap;}
+
+  /* HOURS + LOCATION */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .info-card{
+    border:1px solid var(--line); border-radius:16px; padding:32px;
+    background:rgba(244,236,216,0.02);
+  }
+  .info-card h3{font-size:1.2rem; margin-bottom:18px; font-weight:600;}
+  .hours-row{
+    display:flex; justify-content:space-between;
+    padding:8px 0; font-size:0.92rem;
+    border-bottom:1px solid var(--line);
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{opacity:0.7;}
+  .hours-row.today{color:var(--amber);}
+  .hours-row.today .day{color:var(--amber); opacity:1;}
+  .addr p{margin:0 0 10px; opacity:0.75; line-height:1.6;}
+  .addr .tag{
+    display:inline-block; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--sage); border:1px solid rgba(111,125,92,0.4); border-radius:100px;
+    padding:5px 12px; margin-top:8px;
+  }
+
+  /* CTA FOOTER */
+  footer{
+    background:#151109; border-top:1px solid var(--line);
+    padding:64px 0 40px;
+  }
+  .cta-final{text-align:center; padding-bottom:48px;}
+  .cta-final h2{font-size:clamp(1.8rem,4vw,2.8rem); font-weight:600; margin-bottom:16px;}
+  .cta-final p{opacity:0.7; margin-bottom:28px;}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:28px; border-top:1px solid var(--line);
+    font-size:0.85rem; opacity:0.55; flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width: 800px){
+    nav ul{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .ring-badge{margin:0 auto;}
+    .about-grid{grid-template-columns:1fr;}
+    .menu-cols{grid-template-columns:1fr;}
+    .info-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .ring-badge, .btn-primary{transition:none;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber); outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <span class="brand-mark">W</span>
+      Waypoint Coffee
+    </div>
+    <div class="nav-links-wrap">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a class="nav-cta" href="#visit">Get directions</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Corner of 5th &amp; Alder</div>
+      <h1>Coffee that <em>slows you down</em>, on purpose.</h1>
+      <p class="lede">A small-batch roaster and neighborhood counter. We pull one espresso at a time, and we're in no hurry to change that.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#menu">See the menu</a>
+        <a class="btn-ghost" href="#visit">Get directions</a>
+      </div>
+    </div>
+    <div class="ring-badge">
+      <span class="stamp-top">Today's pour</span>
+      <span class="stamp-main">Honduras<br>La Vega</span>
+      <span class="stamp-bottom">Washed · Notes of plum</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="section-label"><span class="ring-mini"></span><span>The shop</span></div>
+      <h2>Run by two people who couldn't find a good cup nearby.</h2>
+    </div>
+    <div>
+      <p>Waypoint opened in 2019 out of a shared frustration: great coffee shouldn't require a fifteen-minute drive. We roast in small batches, change the menu with the seasons, and know most of our regulars by their order before they say a word.</p>
+      <div class="about-stats">
+        <div><div class="num">6</div><div class="lbl">Years on 5th &amp; Alder</div></div>
+        <div><div class="num">12</div><div class="lbl">Origins rotated yearly</div></div>
+        <div><div class="num">1</div><div class="lbl">Shot at a time, always</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-label"><span class="ring-mini"></span><span>On the board</span></div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.5rem); font-weight:600; margin-bottom:32px;">A short menu, done properly.</h2>
+    <div class="menu-board">
+      <div class="menu-cols">
+        <div class="menu-col">
+          <h3>Espresso</h3>
+          <div class="menu-item"><div><span class="name">Espresso</span><span class="note">Single or double</span></div><span class="price">$3.25</span></div>
+          <div class="menu-item"><div><span class="name">Cortado</span><span class="note">Equal parts espresso &amp; milk</span></div><span class="price">$4.00</span></div>
+          <div class="menu-item"><div><span class="name">Cappuccino</span></div><span class="price">$4.50</span></div>
+          <div class="menu-item"><div><span class="name">Oat Latte</span><span class="note">Steamed oat milk</span></div><span class="price">$5.25</span></div>
+        </div>
+        <div class="menu-col">
+          <h3>Filter &amp; More</h3>
+          <div class="menu-item"><div><span class="name">Pour Over</span><span class="note">Rotating single origin</span></div><span class="price">$5.00</span></div>
+          <div class="menu-item"><div><span class="name">Cold Brew</span></div><span class="price">$4.25</span></div>
+          <div class="menu-item"><div><span class="name">Matcha Latte</span></div><span class="price">$5.00</span></div>
+          <div class="menu-item"><div><span class="name">Almond Croissant</span><span class="note">Baked daily, next door</span></div><span class="price">$4.75</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-label"><span class="ring-mini"></span><span>Find us</span></div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.5rem); font-weight:600; margin-bottom:32px;">Come sit for a while.</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Hours</h3>
+        <div class="hours-row"><span class="day">Monday</span><span>7am – 3pm</span></div>
+        <div class="hours-row today"><span class="day">Tuesday</span><span>7am – 3pm</span></div>
+        <div class="hours-row"><span class="day">Wednesday</span><span>7am – 3pm</span></div>
+        <div class="hours-row"><span class="day">Thursday</span><span>7am – 3pm</span></div>
+        <div class="hours-row"><span class="day">Friday</span><span>7am – 5pm</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span>8am – 5pm</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span>Closed</span></div>
+      </div>
+      <div class="info-card addr">
+        <h3>Address</h3>
+        <p>412 Alder Street<br>Los Angeles, CA 90013</p>
+        <p>Street parking after 6pm. Two bike racks out front.</p>
+        <span class="tag">Open now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta-final">
+      <h2>First cup's on the house.</h2>
+      <p>Mention this page next time you're in — new faces get a drip coffee, free.</p>
+      <a class="btn-primary" href="#visit">Get directions</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Waypoint Coffee</span>
+      <span>412 Alder Street, Los Angeles, CA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
