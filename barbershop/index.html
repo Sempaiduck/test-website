@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brass &amp; Blade Barber Co. — Pine Street</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ecdd;
+    --paper-dim:#ece3d0;
+    --ink:#1b1b1b;
+    --ink-soft:#4a4640;
+    --navy:#1f2a44;
+    --navy-soft:#2c3b5e;
+    --red:#a32b2b;
+    --red-deep:#7c1f1f;
+    --brass:#b8862e;
+    --line: rgba(27,27,27,0.14);
+    --line-on-navy: rgba(243,236,221,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Libre Baskerville', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Bebas Neue', sans-serif;
+    margin:0;
+    line-height:1;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:var(--navy);
+    border-bottom:1px solid var(--line-on-navy);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Bebas Neue', sans-serif; font-size:1.4rem; letter-spacing:0.04em;
+    color:var(--paper);
+  }
+  .brand-mark{
+    width:32px; height:32px; border-radius:50%;
+    border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; color:var(--brass); font-family:'Bebas Neue', sans-serif;
+  }
+  nav ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+    font-size:0.92rem; color:var(--paper); opacity:0.82;
+  }
+  nav ul a{text-decoration:none;}
+  nav ul a:hover{color:var(--brass);}
+  .nav-cta{
+    background:var(--red); color:var(--paper);
+    padding:9px 18px; border-radius:3px; font-size:0.85rem;
+    text-decoration:none; white-space:nowrap; font-weight:700;
+    transition:background 0.15s ease;
+  }
+  .nav-cta:hover{background:var(--red-deep);}
+  .nav-links-wrap{display:flex; align-items:center; gap:28px;}
+
+  /* HERO */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 12% 15%, rgba(163,43,43,0.08), transparent 40%),
+      radial-gradient(circle at 88% 80%, rgba(31,42,68,0.08), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--red); margin-bottom:20px; font-family:'Libre Baskerville', serif; font-weight:700;
+  }
+  .eyebrow-dot{width:6px; height:6px; border-radius:50%; background:var(--red); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.8rem, 5.6vw, 4.6rem);
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--red);
+  }
+  .hero p.lede{
+    font-size:1.05rem; color:var(--ink-soft);
+    max-width:44ch; margin:22px 0 32px; line-height:1.7;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--red); color:var(--paper);
+    border:none; padding:14px 26px; border-radius:3px;
+    font-family:'Libre Baskerville', serif; font-weight:700; font-size:0.92rem;
+    text-decoration:none; display:inline-block; cursor:pointer;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover{background:var(--red-deep); transform:translateY(-1px);}
+  .btn-ghost{
+    border:1.5px solid var(--navy); color:var(--navy);
+    padding:13px 26px; border-radius:3px; font-size:0.92rem; font-weight:700;
+    text-decoration:none; display:inline-block;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .btn-ghost:hover{background:var(--navy); color:var(--paper);}
+
+  /* SIGNATURE: spinning barber-pole badge (also used as section marker) */
+  .pole-badge{
+    position:relative;
+    width:210px; height:210px;
+    margin-left:auto;
+    border-radius:50%;
+    background: repeating-conic-gradient(from 0deg, var(--red) 0deg 18deg, var(--paper) 18deg 27deg, var(--navy) 27deg 45deg, var(--paper) 45deg 54deg);
+    box-shadow:0 10px 26px rgba(27,27,27,0.16);
+    animation: pole-spin 22s linear infinite;
+  }
+  .pole-badge::before{
+    content:"";
+    position:absolute; inset:15px;
+    border-radius:50%;
+    background:var(--paper);
+    border:1px solid var(--line);
+  }
+  .pole-badge .badge-content{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    animation: pole-spin-counter 22s linear infinite;
+  }
+  .pole-badge .stamp-top{font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); font-family:'Libre Baskerville', serif; font-weight:700;}
+  .pole-badge .stamp-main{font-family:'Bebas Neue', sans-serif; font-size:2.1rem; color:var(--ink); margin:2px 0; letter-spacing:0.03em;}
+  .pole-badge .stamp-bottom{font-size:0.66rem; letter-spacing:0.06em; color:var(--ink-soft);}
+
+  @keyframes pole-spin{ to{ transform:rotate(360deg); } }
+  @keyframes pole-spin-counter{ to{ transform:rotate(-360deg); } }
+
+  /* SECTION LABEL — reuses the pole-mark, small, as a category tag */
+  .section-label{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .section-label .pole-mini{
+    width:22px; height:22px; border-radius:50%;
+    background: repeating-conic-gradient(from 0deg, var(--red) 0deg 18deg, var(--paper) 18deg 27deg, var(--navy) 27deg 45deg, var(--paper) 45deg 54deg);
+    flex-shrink:0;
+  }
+  .section-label span{
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); font-weight:700;
+  }
+
+  section{padding:76px 0;}
+  .divider{height:1px; background:var(--line); border:none; margin:0;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
+  .about-grid h2{font-size:clamp(1.9rem,3.4vw,2.7rem); text-transform:uppercase; margin-bottom:20px;}
+  .about-grid p{color:var(--ink-soft); line-height:1.8; font-size:1rem; max-width:56ch;}
+  .about-stats{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
+  .about-stats div{border-left:2px solid var(--red); padding-left:14px;}
+  .about-stats .num{font-family:'Bebas Neue', sans-serif; font-size:2rem; color:var(--red);}
+  .about-stats .lbl{font-size:0.8rem; opacity:0.7; margin-top:2px; color:var(--ink-soft);}
+
+  /* SERVICES — tariff board */
+  .menu-board{
+    background:var(--navy);
+    border:1px solid var(--line-on-navy);
+    border-radius:6px;
+    padding:44px 40px;
+  }
+  .menu-cols{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .menu-col h3{
+    font-family:'Bebas Neue', sans-serif; font-size:1.3rem; color:var(--brass);
+    text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid var(--line-on-navy);
+  }
+  .menu-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:11px 0; border-bottom:1px dashed rgba(243,236,221,0.14);
+    gap:16px;
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .name{font-size:0.98rem; color:var(--paper);}
+  .menu-item .note{display:block; font-size:0.8rem; opacity:0.6; margin-top:2px; color:var(--paper);}
+  .menu-item .price{font-family:'Bebas Neue', sans-serif; color:var(--brass); font-size:1.1rem; white-space:nowrap;}
+
+  /* HOURS + LOCATION */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .info-card{
+    border:1px solid var(--line); border-radius:6px; padding:32px;
+    background:var(--paper-dim);
+  }
+  .info-card h3{font-size:1.4rem; margin-bottom:18px; text-transform:uppercase;}
+  .hours-row{
+    display:flex; justify-content:space-between;
+    padding:8px 0; font-size:0.92rem;
+    border-bottom:1px solid var(--line);
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{color:var(--ink-soft);}
+  .hours-row.today{color:var(--red); font-weight:700;}
+  .hours-row.today .day{color:var(--red);}
+  .addr p{margin:0 0 10px; color:var(--ink-soft); line-height:1.7;}
+  .addr .tag{
+    display:inline-block; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--navy); border:1px solid var(--navy); border-radius:100px;
+    padding:5px 12px; margin-top:8px; font-weight:700;
+  }
+
+  /* CTA FOOTER */
+  footer{
+    background:var(--navy); color:var(--paper);
+    padding:64px 0 40px;
+  }
+  .cta-final{text-align:center; padding-bottom:48px;}
+  .cta-final h2{font-size:clamp(2rem,4.4vw,3rem); text-transform:uppercase; margin-bottom:16px;}
+  .cta-final p{opacity:0.78; margin-bottom:28px;}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:28px; border-top:1px solid var(--line-on-navy);
+    font-size:0.85rem; opacity:0.62; flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width: 800px){
+    nav ul{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .pole-badge{margin:0 auto;}
+    .about-grid{grid-template-columns:1fr;}
+    .menu-cols{grid-template-columns:1fr;}
+    .info-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .pole-badge, .pole-badge .badge-content, .btn-primary{animation:none; transition:none;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--red); outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <span class="brand-mark">B</span>
+      Brass &amp; Blade
+    </div>
+    <div class="nav-links-wrap">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a class="nav-cta" href="#visit">Book a cut</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Corner of 9th &amp; Pine</div>
+      <h1>A haircut is quick. A good one <em>isn't rushed.</em></h1>
+      <p class="lede">Brass &amp; Blade is a three-chair barbershop on Pine Street — hot towel shaves, straight-razor line-ups, and barbers who remember how you like it cut.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#services">See services &amp; rates</a>
+        <a class="btn-ghost" href="#visit">Get directions</a>
+      </div>
+    </div>
+    <div class="pole-badge">
+      <div class="badge-content">
+        <span class="stamp-top">Est.</span>
+        <span class="stamp-main">1998</span>
+        <span class="stamp-bottom">Three chairs, Pine St.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="section-label"><span class="pole-mini"></span><span>The shop</span></div>
+      <h2>Trained the old way, before they trained anyone else.</h2>
+    </div>
+    <div>
+      <p>Brass &amp; Blade opened in 1998 above what used to be a hardware store, and never moved. All three barbers came up through apprenticeships, not certificates — which means fades that actually fade, and shaves that don't nick. We don't take walk-ins lightly, and we don't watch the clock while you're in the chair.</p>
+      <div class="about-stats">
+        <div><div class="num">27</div><div class="lbl">Years on Pine Street</div></div>
+        <div><div class="num">3</div><div class="lbl">Chairs, always full</div></div>
+        <div><div class="num">1</div><div class="lbl">Straight razor per shave</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-label"><span class="pole-mini"></span><span>Services &amp; rates</span></div>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.7rem); text-transform:uppercase; margin-bottom:32px;">No upsells. Just good work.</h2>
+    <div class="menu-board">
+      <div class="menu-cols">
+        <div class="menu-col">
+          <h3>Cuts</h3>
+          <div class="menu-item"><div><span class="name">Classic Cut</span><span class="note">Scissor or clipper, wash included</span></div><span class="price">$35</span></div>
+          <div class="menu-item"><div><span class="name">Skin Fade</span><span class="note">Razor-edged blend</span></div><span class="price">$40</span></div>
+          <div class="menu-item"><div><span class="name">Buzz Cut</span></div><span class="price">$25</span></div>
+          <div class="menu-item"><div><span class="name">Kids Cut</span><span class="note">12 &amp; under</span></div><span class="price">$22</span></div>
+        </div>
+        <div class="menu-col">
+          <h3>Shaves &amp; Grooming</h3>
+          <div class="menu-item"><div><span class="name">Hot Towel Shave</span><span class="note">Straight razor, steamed towel</span></div><span class="price">$38</span></div>
+          <div class="menu-item"><div><span class="name">Beard Trim &amp; Line-Up</span></div><span class="price">$20</span></div>
+          <div class="menu-item"><div><span class="name">Cut + Shave Combo</span></div><span class="price">$60</span></div>
+          <div class="menu-item"><div><span class="name">Ear &amp; Nose Wax</span></div><span class="price">$12</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-label"><span class="pole-mini"></span><span>Find us</span></div>
+    <h2 style="font-size:clamp(1.9rem,3.4vw,2.7rem); text-transform:uppercase; margin-bottom:32px;">Walk in, or book ahead.</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Hours</h3>
+        <div class="hours-row"><span class="day">Tuesday</span><span>9am – 7pm</span></div>
+        <div class="hours-row"><span class="day">Wednesday</span><span>9am – 7pm</span></div>
+        <div class="hours-row today"><span class="day">Thursday</span><span>9am – 7pm</span></div>
+        <div class="hours-row"><span class="day">Friday</span><span>9am – 7pm</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span>8am – 5pm</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span>Closed</span></div>
+        <div class="hours-row"><span class="day">Monday</span><span>Closed</span></div>
+      </div>
+      <div class="info-card addr">
+        <h3>Address</h3>
+        <p>1140 Pine Street<br>Los Angeles, CA 90015</p>
+        <p>Metered parking out front. Last cut starts one hour before close.</p>
+        <span class="tag">Open now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta-final">
+      <h2>First trim's on the house.</h2>
+      <p>Tell the chair you found us online — new clients get $10 off their first visit.</p>
+      <a class="btn-primary" href="#visit">Book a cut</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Brass &amp; Blade Barber Co.</span>
+      <span>1140 Pine Street, Los Angeles, CA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
